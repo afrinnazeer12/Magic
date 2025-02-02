@@ -186,8 +186,8 @@ header{
 
 }
 .about-img img{_
-    width: 150px;
-    height:100%;
+    width: 500px;
+    height:500px;
     
 
 }
@@ -427,7 +427,8 @@ header{
     color: var(--text-color);
     background: var(--main-color);
     padding: 10px;
-    border-radius: 2rem;
+    
+  
 }
 
 
@@ -530,21 +531,28 @@ header{
 
 
 @media screen and (max-width: 478px){
+    .home-text{
+        margin-left: -30px;
+    }
     .home-img img{
-        width: 420px;
-        height: 420px;       
+        width: 400px;
+        height: 350px;       
         margin-left: 5px; 
         margin-top: 50px;         
     }
+    
 
     .btn{ 
         transition: all .50s easy;
         margin-left: 100px;    
     }
+    .about{
+        margin-top: 3px;
+    }
 
     .about-img img{
-        width: 420px;
-        height:420px; 
+        width: 400px;
+        height:300px; 
         margin-top: 220px;
     }
 
@@ -552,12 +560,32 @@ header{
         transition: all .50s easy;
         margin-left: 120px
     }
-
+    .cakes{
+        margin-top: -100px;
+    }
+    .row img{
+        margin-left: 30px;
+    }
     .row h3{
          margin-left: 10px;
          text-align: center;       
     }
-
+    .review-content{
+        margin-left: 40px;
+    }
+    .box{
+        width: 95%;
+        height: 90%;
+    }
+    .box p{
+        margin-left: -40px;
+    }
+    .bx-img{
+        margin-left: -60px;
+    }
+    .rating{
+        width: 200px;
+    }
     .contact-text h2{
         font-size: 2rem;
         margin-top: 0px;      
@@ -574,35 +602,56 @@ header{
 
 
 @media screen and (max-width: 360px){
+
+
+    .home-text{
+        margin-left: -50px;
+    }
     .home-img img{
-        width: 300px;
-        height: 300px;       
-        margin-left: -45px; 
+        width: 340px;
+        height: 250px;       
+        margin-left:-10px; 
         margin-top: 50px;         
     }
 
-    .btn{ 
-        transition: all .50s easy;
-        margin-left: 50px;    
-    }
-
     .about-img img{
-        width: 300px;
-        height:300px; 
-        margin-top: 220px;
+        width: 100%;
+        height:200px; 
+        margin-top: 20px;
+        margin-left: -10px;
     }
 
     .btn1{
         transition: all .50s easy;
         margin-left: 70px
     }
+    .cakes{
+        margin-top: -120px;
+    }
+    .cakes h4{
+        margin-left: 30px;
+
+    }
+    .cakes h2{
+        margin-left: 20px;
+       
+    }
+    .row img{
+        margin-left: 10px;
+        width: 95%;
+        height: 380px;
+    }
 
     .row h3{
-         margin-left: 10px;
+         margin-left: 40px;
          text-align: center;       
+    }
+    .btn1{
+        margin-left: 100px;
     }
 
     .contact-text h2{
+
         font-size: 2rem;
         margin-top: 0px;      
     }
@@ -612,6 +661,44 @@ header{
         margin-top: 30px;
         margin-left: 30px;   
     }
+
+    .middle-text h4{
+        margin-left: 25px;
+        font-size: medium;
+
+    }
+    .middle-text h2{
+        margin-left: 5px;
+        width: 100%;
+        
+
+    }
+    .bx-img{
+        margin-left: -70px; 
+    }
+    .review-content {
+        margin-left: 30px;
+       
+    }
+    .box{
+        width: 100%;
+        height: 95%
+      
+    }
+    .box p{
+        margin-left: -70px;
+    }
+    .contact-text p{
+        margin-left: 50px;
+    }
+    .contact-text h2{
+        margin-left: 30px;
+    }
+    .social{
+        margin-left: 38px;
+
+    }
+    
 
 }
 
