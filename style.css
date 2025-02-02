@@ -546,9 +546,7 @@ header{
         transition: all .50s easy;
         margin-left: 100px;    
     }
-    .about{
-        margin-top: 3px;
-    }
+    
 
     .about-img img{
         width: 400px;
