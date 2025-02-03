@@ -545,7 +545,7 @@ header{
 
     .logo
     {
-        margin-left: 10px;
+        margin-left: 7px;
     }
     .home-img img{
         width: 450px;
@@ -579,8 +579,8 @@ header{
 
 @media screen and (max-width: 478px){
     .logo{
-        margin-left: -10px;
         font-size: 20px;
+        margin-left: 20px;
     }
     .home-text{
         margin-left: -30px;
@@ -651,7 +651,10 @@ header{
 
 
 @media screen and (max-width: 360px){
-
+    .logo{
+        margin-left: -10px;
+        font-size: 20px;
+    }
 
 
     .home-text{
@@ -757,7 +760,6 @@ header{
 
 
 @media(max-width:1180px){
-    
     :root{
         --big-font:4rem;
         --h2-font:2.2rem;
