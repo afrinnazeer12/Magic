@@ -539,6 +539,10 @@ header{
 
 
 @media screen and (max-width: 768px){
+
+    .logo{
+        margin-left: 20px;
+    }
     .home-img img{
         width: 450px;
         height: 450px;       
@@ -570,6 +574,12 @@ header{
 
 
 @media screen and (max-width: 478px){
+
+    .logo{
+        margin-left: -10px;
+        width: 400px;
+        font-size: 20px;
+    }
     .home-text{
         margin-left: -30px;
     }
