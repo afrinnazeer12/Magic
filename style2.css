@@ -1,13 +1,12 @@
-
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background: linear-gradient(45deg, #021526,#118DF0, #0F1035);
+    background: burlywood;
 }
 
 header {
-    
+   
     color: white;
     text-align: center;
     font-size: 300px;
@@ -18,13 +17,13 @@ header {
 h1 {
     margin-top: 60px;
     font-size: 5rem;
-    color: white;
+    color: black;
    
 }
 
 .cakes-menu {
     padding: 2rem;
-    
+   
 }
 
 .cakes-text h2 {
@@ -34,7 +33,7 @@ h1 {
 }
 
 .cake-boxes {
-    
+   
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 40px;
@@ -44,7 +43,7 @@ h1 {
 }
 
 .cake-box {
-    
+   
     background-color: black;
     border: 3px solid white;
     border-radius: 8px;
