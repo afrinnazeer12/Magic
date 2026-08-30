@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu | Magic Delightz</title>
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+            list-style: none;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #fdf6ee;
+            color: #1a1a1a;
+            overflow-x: hidden;
+        }
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 6%;
+            background: rgba(253, 246, 238, 0.95);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+        }
+
+        .brand img {
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #ff9f0d;
+            font-weight: 600;
+            transition: transform 0.3s ease;
+        }
+
+        .back-link:hover {
+            transform: translateX(-4px);
+        }
+
+        .hero {
+            padding: 72px 6% 34px;
+            text-align: center;
+            animation: fadeUp 0.8s ease;
+        }
+
+        .eyebrow {
+            color: #ff9f0d;
+            font-size: 0.86rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.2rem, 4vw, 3.8rem);
+            margin-bottom: 14px;
+        }
+
+        .hero p {
+            max-width: 720px;
+            margin: 0 auto;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .menu-wrap {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 24px 6% 80px;
+        }
+
+        .menu-section {
+            margin-bottom: 40px;
+            animation: fadeUp 0.8s ease both;
+        }
+
+        .menu-section-subtitle {
+            color: #ff9f0d;
+            font-size: 0.82rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        .menu-card {
+            background: #fff;
+            border: 1px solid #f0e8da;
+            border-radius: 18px;
+            padding: 22px 24px;
+            box-shadow: 0 10px 24px rgba(0,0,0,0.04);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeUp 0.8s ease both;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 14px 30px rgba(255,159,13,0.12);
+        }
+
+        .menu-card h3 {
+            font-size: 1rem;
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+
+        .bottom-note {
+            max-width: 1180px;
+            margin: 0 auto 80px;
+            padding: 0 6%;
+        }
+
+        .note-card {
+            background: #fff8f0;
+            border-left: 4px solid #ff9f0d;
+            border-radius: 18px;
+            padding: 22px 24px;
+            color: #5f5f5f;
+            line-height: 1.8;
+            box-shadow: 0 10px 24px rgba(0,0,0,0.03);
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .menu-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 560px) {
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="topbar">
+        <a href="index.html#home" class="brand">
+            <img src="IMG_1261.PNG" alt="Magic Delightz logo">
+        </a>
+        <a href="index.html#home" class="back-link">
+            <i class='bx bx-arrow-back'></i>
+            <span>Back to Home</span>
+        </a>
+    </div>
+
+    <section class="hero">
+        <p class="eyebrow">Browse Menu</p>
+        <h1>Our Cake Names</h1>
+        <p>Explore our names-only menu, neatly arranged so every cake and dessert can be viewed clearly.</p>
+    </section>
+
+    <section class="menu-wrap">
+        <div class="menu-section">
+            <p class="menu-section-subtitle">🎂 Cake Menu</p>
+            <div class="menu-grid">
+                <div class="menu-card"><h3>Vanila Cake</h3></div>
+                <div class="menu-card"><h3>Chocolate</h3></div>
+                <div class="menu-card"><h3>Black Forest</h3></div>
+                <div class="menu-card"><h3>White Forest</h3></div>
+                <div class="menu-card"><h3>Red Velvet</h3></div>
+                <div class="menu-card"><h3>Red Bee</h3></div>
+                <div class="menu-card"><h3>Vancho</h3></div>
+                <div class="menu-card"><h3>Vanstraw</h3></div>
+                <div class="menu-card"><h3>Neopolition</h3></div>
+                <div class="menu-card"><h3>Nutty Bubble</h3></div>
+                <div class="menu-card"><h3>Strawberry Cake</h3></div>
+                <div class="menu-card"><h3>Spanish Delight</h3></div>
+                <div class="menu-card"><h3>KitKat Cake</h3></div>
+                <div class="menu-card"><h3>Chocolate Truffle</h3></div>
+                <div class="menu-card"><h3>White Truffle</h3></div>
+                <div class="menu-card"><h3>Rainbow Cake</h3></div>
+                <div class="menu-card"><h3>Pistachio Cake</h3></div>
+                <div class="menu-card"><h3>Rosetto Cake</h3></div>
+                <div class="menu-card"><h3>Mango Cake</h3></div>
+                <div class="menu-card"><h3>Pineapple Cake</h3></div>
+                <div class="menu-card"><h3>Blueberry Cake</h3></div>
+                <div class="menu-card"><h3>Butter Scotch</h3></div>
+                <div class="menu-card"><h3>Tender Coconut</h3></div>
+                <div class="menu-card"><h3>Ice Cream Cake</h3></div>
+                <div class="menu-card"><h3>Pinata Cake</h3></div>
+                <div class="menu-card"><h3>Doll Cake</h3></div>
+                <div class="menu-card"><h3>German Black Forest</h3></div>
+                <div class="menu-card"><h3>Gulab Gamun Cake</h3></div>
+                <div class="menu-card"><h3>Rasamala(i) Cake</h3></div>
+                <div class="menu-card"><h3>Toffee Cake</h3></div>
+                <div class="menu-card"><h3>Honey Cake</h3></div>
+                <div class="menu-card"><h3>Mango Truffle</h3></div>
+                <div class="menu-card"><h3>Orange Truffle</h3></div>
+                <div class="menu-card"><h3>Almond Cake</h3></div>
+                <div class="menu-card"><h3>Nutella Truffle</h3></div>
+                <div class="menu-card"><h3>Caramelized Banana Cake</h3></div>
+                <div class="menu-card"><h3>Ferraro Rocher Cake</h3></div>
+                <div class="menu-card"><h3>Reffalo Cake</h3></div>
+                <div class="menu-card"><h3>Gulfi Cake</h3></div>
+                <div class="menu-card"><h3>Lotus Biscoff</h3></div>
+                <div class="menu-card"><h3>Snickers Delight</h3></div>
+                <div class="menu-card"><h3>Cookie n Cream</h3></div>
+                <div class="menu-card"><h3>Vanila Chocolate Fudge</h3></div>
+                <div class="menu-card"><h3>Orange Chocolate Fudge</h3></div>
+                <div class="menu-card"><h3>Lemon White Choco Fudge</h3></div>
+                <div class="menu-card"><h3>Chocolate Caramel Fudge</h3></div>
+                <div class="menu-card"><h3>Dark Chocolate Fudge</h3></div>
+                <div class="menu-card"><h3>Milk Chocolate Fudge</h3></div>
+                <div class="menu-card"><h3>White Chocolate Fudge</h3></div>
+                <div class="menu-card"><h3>Lemon Blueberry</h3></div>
+                <div class="menu-card"><h3>Hazelnut Crush</h3></div>
+                <div class="menu-card"><h3>Golden Caramel</h3></div>
+            </div>
+        </div>
+
+        <div class="menu-section">
+            <p class="menu-section-subtitle">Jar Cakes</p>
+            <div class="menu-grid">
+                <div class="menu-card"><h3>White Truffle</h3></div>
+                <div class="menu-card"><h3>Chocolate Truffle</h3></div>
+                <div class="menu-card"><h3>Redvelvet</h3></div>
+                <div class="menu-card"><h3>Pistachio</h3></div>
+                <div class="menu-card"><h3>Strawberry</h3></div>
+                <div class="menu-card"><h3>Pineapple</h3></div>
+                <div class="menu-card"><h3>Butterscotch</h3></div>
+                <div class="menu-card"><h3>Blueberry</h3></div>
+                <div class="menu-card"><h3>Pull Me Up</h3></div>
+                <div class="menu-card"><h3>Chocolate</h3></div>
+                <div class="menu-card"><h3>Vanila</h3></div>
+                <div class="menu-card"><h3>Redvelvet</h3></div>
+                <div class="menu-card"><h3>Pistachio</h3></div>
+                <div class="menu-card"><h3>Strawberry</h3></div>
+            </div>
+        </div>
+
+        <div class="menu-section">
+            <p class="menu-section-subtitle">Cheese Cakes</p>
+            <div class="menu-grid">
+                <div class="menu-card"><h3>Strawberry</h3></div>
+                <div class="menu-card"><h3>Raspberry</h3></div>
+                <div class="menu-card"><h3>Blueberry</h3></div>
+                <div class="menu-card"><h3>Blackberry</h3></div>
+            </div>
+        </div>
+
+        <div class="menu-section">
+            <p class="menu-section-subtitle">🍮 Tressleches</p>
+            <div class="menu-grid">
+                <div class="menu-card"><h3>Classic</h3></div>
+                <div class="menu-card"><h3>Chocolate</h3></div>
+                <div class="menu-card"><h3>Redvelvet</h3></div>
+                <div class="menu-card"><h3>Pistachio</h3></div>
+                <div class="menu-card"><h3>Strawberry</h3></div>
+            </div>
+        </div>
+
+        <div class="menu-section">
+            <p class="menu-section-subtitle">🧁 Mini Desserts</p>
+            <div class="menu-grid">
+                <div class="menu-card"><h3>Mini Cakes</h3></div>
+                <div class="menu-card"><h3>Doughnuts (box of 6)</h3></div>
+                <div class="menu-card"><h3>Cup Cakes (box of 6)</h3></div>
+                <div class="menu-card"><h3>Brownie (box of 5)</h3></div>
+                <div class="menu-card"><h3>Cake Sickles</h3></div>
+                <div class="menu-card"><h3>Pop Sickles</h3></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bottom-note">
+        <div class="note-card">
+            Explore our menu by name and quickly find the cakes, desserts, and special treats you love most.
+        </div>
+    </section>
+</body>
+</html>

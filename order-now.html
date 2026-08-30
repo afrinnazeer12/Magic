@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Now | Magic Delightz</title>
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; text-decoration: none; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #fdf6ee;
+            color: #1a1a1a;
+            overflow-x: hidden;
+        }
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 30;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 6%;
+            background: rgba(253, 246, 238, 0.95);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+        }
+        .brand img {
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #ff9f0d;
+            font-weight: 600;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        .back-link:hover { transform: translateX(-4px); color: #d98800; }
+
+        .hero {
+            padding: 64px 6% 30px;
+            text-align: center;
+            animation: fadeUp 0.8s ease;
+        }
+        .eyebrow {
+            color: #ff9f0d;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.2rem, 5vw, 4rem);
+            line-height: 1.15;
+            margin-bottom: 14px;
+        }
+        .hero p {
+            max-width: 760px;
+            margin: 0 auto;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .section {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 24px 6% 78px;
+        }
+        .catalog-section {
+            margin-bottom: 40px;
+        }
+        .catalog-section:last-child {
+            margin-bottom: 0;
+        }
+        .section-subtitle {
+            color: #ff9f0d;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 22px;
+        }
+        .catalog-card {
+            background: #fff;
+            border: 1px solid #f0e8da;
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 10px 24px rgba(0,0,0,0.04);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .catalog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 16px 34px rgba(255,159,13,0.12);
+        }
+        .catalog-card h3 {
+            font-size: 1.05rem;
+            margin-bottom: 8px;
+        }
+        .catalog-card p {
+            color: #666;
+            line-height: 1.7;
+            font-size: 0.94rem;
+            margin-bottom: 16px;
+        }
+        .choose-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: none;
+            background: #1a1a1a;
+            color: #fff;
+            padding: 12px 18px;
+            border-radius: 999px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.92rem;
+            font-weight: 600;
+            transition: background 0.3s ease, transform 0.25s ease;
+        }
+        .choose-btn:hover { background: #ff9f0d; transform: translateY(-2px); }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 980px) {
+            .catalog-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 560px) {
+            .hero { padding-top: 48px; }
+            .section { padding-top: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="topbar">
+        <a href="index.html#home" class="brand">
+            <img src="IMG_1261.PNG" alt="Magic Delightz logo">
+        </a>
+        <a href="index.html#home" class="back-link">
+            <i class='bx bx-arrow-back'></i>
+            <span>Back to Home</span>
+        </a>
+    </div>
+
+    <section class="hero">
+        <p class="eyebrow">Order Now</p>
+        <h1>Choose Your Cake, Place Your Order</h1>
+        <p>Browse every cake name below, choose what you like, and jump straight to the order form to place your request.</p>
+    </section>
+
+    <section class="section">
+        <div id="catalogRoot"></div>
+    </section>
+
+    <script>
+        const catalogData = [
+            {
+                subtitle: '🎂 Cake Menu',
+                title: 'Classic & Signature Cakes',
+                items: [
+                    ['Vanila Cake', 'Classic soft and creamy vanilla cake for any celebration.'],
+                    ['Chocolate', 'Rich chocolate flavor with a smooth and delicious taste.'],
+                    ['Black Forest', 'A favorite layered chocolate cake with a classic rich taste.'],
+                    ['White Forest', 'Soft and elegant white chocolate style cake for celebrations.'],
+                    ['Red Velvet', 'Beautiful red velvet cake with a premium and soft texture.'],
+                    ['Red Bee', 'A special red-themed cake with a lovely finish.'],
+                    ['Vancho', 'A tasty vanilla and chocolate blend for all ages.'],
+                    ['Vanstraw', 'A fruity and creamy vanilla-strawberry style treat.'],
+                    ['Neopolition', 'A layered favorite with delightful flavor variety.'],
+                    ['Nutty Bubble', 'Nutty and fun cake choice with a playful taste.'],
+                    ['Strawberry Cake', 'Fresh strawberry flavor with a sweet and soft bite.'],
+                    ['Spanish Delight', 'Rich and delightful signature cake with a smooth finish.'],
+                    ['KitKat Cake', 'Chocolate cake loaded with KitKat goodness and crunch.'],
+                    ['Chocolate Truffle', 'Deep chocolate truffle cake for true chocolate lovers.'],
+                    ['White Truffle', 'Smooth white truffle cake with a premium finish.'],
+                    ['Rainbow Cake', 'Colorful layers that make celebrations extra special.'],
+                    ['Pistachio Cake', 'A rich nutty cake with a distinctive pistachio taste.'],
+                    ['Rosetto Cake', 'A stylish special cake with a beautiful premium look.'],
+                    ['Mango Cake', 'Sweet mango flavor with a bright tropical touch.'],
+                    ['Pineapple Cake', 'A light and fruity pineapple celebration cake.'],
+                    ['Blueberry Cake', 'Fresh blueberry flavor in a soft and elegant cake.'],
+                    ['Butter Scotch', 'Sweet butterscotch layers with a rich caramel-like taste.'],
+                    ['Tender Coconut', 'Soft tropical cake with gentle coconut flavor.'],
+                    ['Ice Cream Cake', 'A cool and creamy treat for special occasions.'],
+                    ['Pinata Cake', 'A fun surprise cake made for joyful moments.'],
+                    ['Doll Cake', 'Pretty doll-style cake for kids and celebrations.'],
+                    ['German Black Forest', 'A richer black forest style with classic appeal.'],
+                    ['Gulab Gamun Cake', 'Indian-inspired cake with a festive sweet touch.'],
+                    ['Rasamala(i) Cake', 'Creamy traditional-flavor cake with an elegant finish.'],
+                    ['Toffee Cake', 'Sweet toffee flavor with a rich and comforting taste.'],
+                    ['Honey Cake', 'Soft honey-flavored cake with a gentle sweetness.'],
+                    ['Mango Truffle', 'A premium mango and chocolate style truffle cake.'],
+                    ['Orange Truffle', 'Fresh orange notes blended into a truffle cake.'],
+                    ['Almond Cake', 'Nutty almond flavor with a rich, elegant taste.'],
+                    ['Nutella Truffle', 'Chocolate hazelnut style cake with a smooth finish.'],
+                    ['Caramelized Banana Cake', 'Sweet banana flavor with a warm caramel touch.'],
+                    ['Ferraro Rocher Cake', 'Chocolate and hazelnut inspired premium cake.'],
+                    ['Reffalo Cake', 'A smooth special-flavor cake with a premium feel.'],
+                    ['Gulfi Cake', 'Traditional-inspired sweetness with a festive style.'],
+                    ['Lotus Biscoff', 'Biscoff-flavored cake with a caramel biscuit twist.'],
+                    ['Snickers Delight', 'Chocolate, caramel, and nutty delight in one cake.'],
+                    ['Cookie n Cream', 'Creamy cookie flavor with a soft and tasty finish.'],
+                    ['Vanila Chocolate Fudge', 'Classic vanilla and chocolate fudge combination.'],
+                    ['Orange Chocolate Fudge', 'Orange and chocolate blended into a rich fudge cake.'],
+                    ['Lemon White Choco Fudge', 'Fresh lemon with sweet white chocolate fudge.'],
+                    ['Chocolate Caramel Fudge', 'A rich mix of chocolate and caramel fudge.'],
+                    ['Dark Chocolate Fudge', 'Deep dark chocolate flavor with a bold finish.'],
+                    ['Milk Chocolate Fudge', 'Smooth and creamy milk chocolate fudge flavor.'],
+                    ['White Chocolate Fudge', 'Sweet white chocolate fudge with a soft texture.'],
+                    ['Lemon Blueberry', 'Bright lemon and blueberry flavor together.'],
+                    ['Hazelnut Crush', 'Nutty hazelnut taste with a crunchy feel.'],
+                    ['Golden Caramel', 'Warm caramel sweetness with a premium touch.']
+                ]
+            },
+            {
+                subtitle: 'Jar Cakes',
+                title: 'Jar Cake Flavours',
+                items: [
+                    ['White Truffle', 'Jar-style white truffle delight.'],
+                    ['Chocolate Truffle', 'Jar-style chocolate truffle delight.'],
+                    ['Redvelvet', 'Jar-style red velvet delight.'],
+                    ['Pistachio', 'Jar-style pistachio delight.'],
+                    ['Strawberry', 'Jar-style strawberry delight.'],
+                    ['Pineapple', 'Jar-style pineapple delight.'],
+                    ['Butterscotch', 'Jar-style butterscotch delight.'],
+                    ['Blueberry', 'Jar-style blueberry delight.'],
+                    ['Pull Me Up', 'Jar-style pull me up delight.'],
+                    ['Chocolate', 'Jar-style chocolate delight.'],
+                    ['Vanila', 'Jar-style vanilla delight.'],
+                    ['Redvelvet', 'Jar-style red velvet delight.'],
+                    ['Pistachio', 'Jar-style pistachio delight.'],
+                    ['Strawberry', 'Jar-style strawberry delight.']
+                ]
+            },
+            {
+                subtitle: 'Cheese Cakes',
+                title: 'Cheesecake Flavours',
+                items: [
+                    ['Strawberry', 'Cheesecake with strawberry flavour.'],
+                    ['Raspberry', 'Cheesecake with raspberry flavour.'],
+                    ['Blueberry', 'Cheesecake with blueberry flavour.'],
+                    ['Blackberry', 'Cheesecake with blackberry flavour.']
+                ]
+            },
+            {
+                subtitle: '🍮 Tressleches',
+                title: 'Tressleches Flavours',
+                items: [
+                    ['Classic', 'Traditional classic tres leches.'],
+                    ['Chocolate', 'Chocolate tres leches.'],
+                    ['Redvelvet', 'Red velvet tres leches.'],
+                    ['Pistachio', 'Pistachio tres leches.'],
+                    ['Strawberry', 'Strawberry tres leches.']
+                ]
+            },
+            {
+                subtitle: '🧁 Mini Desserts',
+                title: 'Mini & Box Desserts',
+                items: [
+                    ['Mini Cakes', 'Mini cakes for small celebrations.'],
+                    ['Doughnuts (box of 6)', 'A box of 6 delicious doughnuts.'],
+                    ['Cup Cakes (box of 6)', 'A box of 6 cute cupcakes.'],
+                    ['Brownie (box of 5)', 'A box of 5 rich brownies.'],
+                    ['Cake Sickles', 'Frozen cake sickles for a fun treat.'],
+                    ['Pop Sickles', 'Pop sickles with a sweet cake twist.']
+                ]
+            }
+        ];
+
+        const catalogRoot = document.getElementById('catalogRoot');
+
+        catalogRoot.innerHTML = catalogData.map(section => `
+            <div class="catalog-section">
+                <p class="section-subtitle">${section.subtitle}</p>
+                <div class="catalog-grid">
+                    ${section.items.map(([name, description], index) => `
+                        <div class="catalog-card" style="animation-delay:${(index % 9) * 0.04}s">
+                            <h3>${name}</h3>
+                            <p>${description}</p>
+                            <button class="choose-btn" data-cake="${name}">Choose Cake <i class='bx bx-right-arrow-alt'></i></button>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `).join('');
+
+        catalogRoot.addEventListener('click', (event) => {
+            const button = event.target.closest('.choose-btn');
+            if (!button) return;
+            const cake = encodeURIComponent(button.dataset.cake);
+            window.location.href = `cake-order.html?cake=${cake}`;
+        });
+
+    </script>
+</body>
+</html>

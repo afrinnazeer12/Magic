@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Write a Review - Magic Delightz</title>
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #fdf6ee;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        /* ── Top Bar ── */
+        .top-bar {
+            background: #1a1a1a;
+            padding: 16px 6%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .top-bar .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #fff;
+        }
+        .top-bar .logo span { color: #ff9f0d; }
+        .back-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #ff9f0d;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: gap 0.2s;
+        }
+        .back-btn:hover { gap: 10px; }
+        /* ── Hero ── */
+        .page-hero {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            text-align: center;
+            padding: 60px 6% 40px;
+        }
+        .page-hero p {
+            color: #ff9f0d;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        .page-hero h1 {
+            font-family: 'Playfair Display', serif;
+            color: #fff;
+            font-size: 2.4rem;
+        }
+        .page-hero h1 span { color: #ff9f0d; }
+        /* ── Form Card ── */
+        .form-wrap {
+            flex: 1;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 50px 6%;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .review-form-card {
+            background: #fff;
+            border-radius: 1.5rem;
+            padding: 40px;
+            width: 100%;
+            max-width: 560px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            border: 1px solid #f0e8da;
+        }
+        .review-form-card h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+        .review-form-card > p {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+        }
+        .form-group { margin-bottom: 22px; }
+        .form-group label {
+            display: block;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 13px 16px;
+            border: 2px solid #f0e8da;
+            border-radius: 12px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            color: #1a1a1a;
+            background: #fdf6ee;
+            outline: none;
+            transition: border-color 0.3s;
+            resize: none;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus { border-color: #ff9f0d; background: #fff; }
+        /* Star Rating */
+        .star-label {
+            display: block;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .stars {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 22px;
+        }
+        .stars input { display: none; }
+        .stars label {
+            font-size: 2.2rem;
+            color: #ddd;
+            cursor: pointer;
+            transition: color 0.2s, transform 0.2s;
+            line-height: 1;
+        }
+        .stars label:hover,
+        .stars label:hover ~ label { color: #ddd; }
+        .stars input:checked ~ label { color: #ddd; }
+        .stars label:hover { color: #FFD700; transform: scale(1.2); }
+        /* Trick: reverse order for CSS-only star rating */
+        .stars { flex-direction: row-reverse; justify-content: flex-end; }
+        .stars label:hover,
+        .stars label:hover ~ label { color: #FFD700 !important; }
+        .stars input:checked ~ label { color: #FFD700 !important; }
+        .rating-text {
+            font-size: 0.82rem;
+            color: #888;
+            margin-top: -14px;
+            margin-bottom: 22px;
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: #1a1a1a;
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .submit-btn:hover {
+            background: #ff9f0d;
+            transform: translateY(-2px);
+        }
+        /* Success Message */
+        .success-msg {
+            display: none;
+            text-align: center;
+            padding: 30px 20px;
+        }
+        .success-msg .check {
+            font-size: 4rem;
+            margin-bottom: 16px;
+        }
+        .success-msg h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+        .success-msg p { color: #666; font-size: 0.9rem; margin-bottom: 24px; }
+        .success-msg a {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #ff9f0d;
+            color: #fff;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+        }
+        /* ── Recent Reviews Panel ── */
+        .recent-panel {
+            width: 100%;
+            max-width: 380px;
+        }
+        .recent-panel h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+        }
+        .review-list { display: flex; flex-direction: column; gap: 16px; }
+        .review-card {
+            background: #fff;
+            border-radius: 1rem;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            border: 1px solid #f0e8da;
+            animation: slideIn 0.4s ease;
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .review-card .rc-stars { color: #FFD700; font-size: 14px; margin-bottom: 8px; }
+        .review-card p { font-size: 0.88rem; color: #555; line-height: 1.6; margin-bottom: 12px; }
+        .review-card .rc-name {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: #1a1a1a;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .rc-avatar {
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            background: #ff9f0d;
+            color: #fff;
+            font-size: 0.85rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .no-reviews {
+            color: #aaa;
+            font-size: 0.9rem;
+            text-align: center;
+            padding: 30px 0;
+        }
+        /* ── Footer ── */
+        .page-footer {
+            background: #1a1a1a;
+            color: #666;
+            text-align: center;
+            padding: 18px;
+            font-size: 0.82rem;
+            margin-top: auto;
+        }
+        @media (max-width: 620px) {
+            .review-form-card { padding: 28px 22px; }
+            .page-hero h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <div class="logo">&#127874; Magic <span>Delightz</span></div>
+        <a href="index.html#review" class="back-btn">
+            <i class='bx bx-arrow-back'></i> Back to Home
+        </a>
+    </div>
+    <div class="page-hero">
+        <p>&#11088; Share Your Experience</p>
+        <h1>Write a <span>Review</span></h1>
+    </div>
+    <div class="form-wrap">
+        <!-- Form Card -->
+        <div class="review-form-card" id="formCard">
+            <h2>Your Review</h2>
+            <p>We'd love to hear what you think about our cakes!</p>
+            <form id="reviewForm" novalidate>
+                <div class="form-group">
+                    <label for="rName">Your Name *</label>
+                    <input type="text" id="rName" placeholder="e.g. Sriram S" maxlength="50" required>
+                </div>
+                <span class="star-label">Your Rating *</span>
+                <div class="stars" id="starGroup">
+                    <input type="radio" id="s5" name="rating" value="5">
+                    <label for="s5" title="5 stars">&#9733;</label>
+                    <input type="radio" id="s4" name="rating" value="4">
+                    <label for="s4" title="4 stars">&#9733;</label>
+                    <input type="radio" id="s3" name="rating" value="3">
+                    <label for="s3" title="3 stars">&#9733;</label>
+                    <input type="radio" id="s2" name="rating" value="2">
+                    <label for="s2" title="2 stars">&#9733;</label>
+                    <input type="radio" id="s1" name="rating" value="1">
+                    <label for="s1" title="1 star">&#9733;</label>
+                </div>
+                <p class="rating-text" id="ratingText">Click a star to rate</p>
+                <div class="form-group">
+                    <label for="rComment">Your Comment *</label>
+                    <textarea id="rComment" rows="5" placeholder="Tell us about your experience with Magic Delightz..." maxlength="300" required></textarea>
+                </div>
+                <p id="formError" style="color:#e74c3c;font-size:0.85rem;margin-bottom:14px;display:none;"></p>
+                <button type="submit" class="submit-btn">
+                    Submit Review <i class='bx bx-send'></i>
+                </button>
+            </form>
+            <!-- Success State -->
+            <div class="success-msg" id="successMsg">
+                <div class="check">&#127870;</div>
+                <h3>Thank you!</h3>
+                <p>Your review has been submitted successfully.</p>
+                <a href="index.html#review"><i class='bx bx-home'></i> Back to Home</a>
+            </div>
+        </div>
+        <!-- Recent Reviews Panel -->
+        <div class="recent-panel">
+            <h3>Recent Reviews</h3>
+            <div class="review-list" id="reviewList">
+                <p class="no-reviews">No reviews yet. Be the first!</p>
+            </div>
+        </div>
+    </div>
+    <div class="page-footer">
+        &copy; 2024 Magic Delightz &mdash; Made with &#127874; &amp; love
+    </div>
+    <script>
+        const STORAGE_KEY = "magicDelightz_reviews";
+        const ratingLabels = ["","Terrible","Poor","Average","Good","Excellent"];
+        // Load existing reviews
+        function loadReviews() {
+            return JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+        }
+        // Save reviews
+        function saveReviews(reviews) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(reviews));
+        }
+        // Render review list in panel
+        function renderList() {
+            const list = document.getElementById("reviewList");
+            const reviews = loadReviews();
+            if (reviews.length === 0) {
+                list.innerHTML = '<p class="no-reviews">No reviews yet. Be the first!</p>';
+                return;
+            }
+            list.innerHTML = reviews.slice().reverse().slice(0, 5).map(r => `
+                <div class="review-card">
+                    <div class="rc-stars">${"&#9733;".repeat(r.rating)}${"&#9734;".repeat(5 - r.rating)}</div>
+                    <p>${r.comment}</p>
+                    <div class="rc-name">
+                        <span class="rc-avatar">${r.name.charAt(0).toUpperCase()}</span>
+                        ${r.name}
+                    </div>
+                </div>
+            `).join("");
+        }
+        // Star rating label update
+        document.querySelectorAll(".stars input").forEach(inp => {
+            inp.addEventListener("change", () => {
+                document.getElementById("ratingText").textContent =
+                    ratingLabels[inp.value] + " (" + inp.value + "/5)";
+            });
+        });
+        // Form submit
+        document.getElementById("reviewForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+            const name    = document.getElementById("rName").value.trim();
+            const comment = document.getElementById("rComment").value.trim();
+            const ratingEl = document.querySelector(".stars input:checked");
+            const errEl   = document.getElementById("formError");
+            if (!name) { errEl.textContent = "Please enter your name."; errEl.style.display = "block"; return; }
+            if (!ratingEl) { errEl.textContent = "Please select a star rating."; errEl.style.display = "block"; return; }
+            if (!comment) { errEl.textContent = "Please write a comment."; errEl.style.display = "block"; return; }
+            errEl.style.display = "none";
+            const reviews = loadReviews();
+            reviews.push({ name, rating: parseInt(ratingEl.value), comment, date: new Date().toLocaleDateString() });
+            saveReviews(reviews);
+            // Show success
+            document.getElementById("reviewForm").style.display = "none";
+            document.getElementById("successMsg").style.display = "block";
+            renderList();
+        });
+        renderList();
+    </script>
+</body>
+</html>

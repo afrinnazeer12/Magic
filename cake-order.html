@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cake Order | Magic Delightz</title>
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; text-decoration: none; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #fdf6ee;
+            color: #1a1a1a;
+            overflow-x: hidden;
+        }
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 30;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 6%;
+            background: rgba(253, 246, 238, 0.95);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+        }
+        .brand img {
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #ff9f0d;
+            font-weight: 600;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        .back-link:hover { transform: translateX(-4px); color: #d98800; }
+
+        .hero {
+            padding: 64px 6% 28px;
+            text-align: center;
+            animation: fadeUp 0.8s ease;
+        }
+        .eyebrow {
+            color: #ff9f0d;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.2rem, 5vw, 4rem);
+            line-height: 1.15;
+            margin-bottom: 14px;
+        }
+        .hero p {
+            max-width: 760px;
+            margin: 0 auto;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .section {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 24px 6% 80px;
+        }
+        .wrap {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 26px;
+            align-items: start;
+        }
+        .panel {
+            background: #fff;
+            border: 1px solid #f0e8da;
+            border-radius: 24px;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.05);
+            padding: 30px;
+        }
+        .panel h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        .panel p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        .field { margin-bottom: 16px; position: relative; }
+        .error-msg {
+            display: none;
+            color: #d63031;
+            font-size: 0.8rem;
+            margin-top: 6px;
+            padding-left: 4px;
+        }
+        .field.invalid input,
+        .field.invalid select,
+        .field.invalid textarea {
+            border-color: #d63031;
+            box-shadow: 0 0 0 4px rgba(214,48,49,0.1);
+        }
+        .field.invalid .error-msg { display: block; }
+        .field.valid input,
+        .field.valid select,
+        .field.valid textarea {
+            border-color: #27ae60;
+            box-shadow: 0 0 0 4px rgba(39,174,96,0.08);
+        }
+        .field label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        .field input,
+        .field select,
+        .field textarea {
+            width: 100%;
+            border: 1px solid #e8dac5;
+            background: #fffaf4;
+            border-radius: 14px;
+            padding: 14px 16px;
+            font: inherit;
+            outline: none;
+            transition: border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+        .field input:focus,
+        .field select:focus,
+        .field textarea:focus {
+            border-color: #ff9f0d;
+            box-shadow: 0 0 0 4px rgba(255,159,13,0.12);
+        }
+        .field input[readonly] {
+            background: #f4ede3;
+            cursor: not-allowed;
+        }
+        .two-col {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+        }
+        .order-btn {
+            width: 100%;
+            border: none;
+            background: linear-gradient(135deg, #ff9f0d, #ff7f11);
+            color: #fff;
+            padding: 15px 20px;
+            border-radius: 16px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-top: 4px;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            box-shadow: 0 12px 26px rgba(255,159,13,0.24);
+        }
+        .order-btn:hover { transform: translateY(-2px); }
+        .status-box {
+            margin-top: 16px;
+            padding: 14px 16px;
+            border-radius: 14px;
+            background: #f8fff2;
+            color: #2e6a1f;
+            border: 1px solid #d5edc2;
+            display: none;
+        }
+        .upload-note {
+            display: block;
+            margin-top: 8px;
+            color: #888;
+            font-size: 0.85rem;
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @media (max-width: 980px) {
+            .wrap,
+            .two-col { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 560px) {
+            .hero { padding-top: 48px; }
+            .section { padding-top: 18px; }
+            .panel { padding: 24px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="topbar">
+        <a href="index.html#home" class="brand">
+            <img src="IMG_1261.PNG" alt="Magic Delightz logo">
+        </a>
+        <a href="order-now.html" class="back-link">
+            <i class='bx bx-arrow-back'></i>
+            <span>Back to Menu</span>
+        </a>
+    </div>
+
+    <section class="hero">
+        <h1>Place Your Order</h1>
+    </section>
+
+    <section class="section">
+        <div class="wrap">
+            <div class="panel">
+                <p class="eyebrow">Order Details</p>
+
+
+
+                <form id="cakeOrderForm" novalidate>
+                    <div class="field" id="field-name">
+                        <label for="customerName">User Name</label>
+                        <input id="customerName" type="text" placeholder="Enter your name" required>
+                        <span class="error-msg" id="err-name">⚠ Please enter your name (letters only).</span>
+                    </div>
+
+                    <div class="field">
+                        <label for="cakeChosen">Cake Chosen</label>
+                        <input id="cakeChosen" type="text" readonly>
+                    </div>
+
+                    <div class="field" id="field-qty">
+                        <label for="quantity">Quantity of Cake</label>
+                        <select id="quantity" required>
+                            <option value="">Select weight</option>
+                            <option>1kg</option>
+                            <option>1.5kg</option>
+                            <option>2kg</option>
+                            <option>2.5kg</option>
+                            <option>3kg</option>
+                            <option>3.5kg</option>
+                            <option>4kg</option>
+                            <option>4.5kg</option>
+                            <option>5kg</option>
+                        </select>
+                        <span class="error-msg" id="err-qty">⚠ Please select a weight.</span>
+                    </div>
+
+                    <div class="field" id="field-desc">
+                        <label for="description">Description</label>
+                        <textarea id="description" rows="4" placeholder="Write cake flavour note, color, theme, message, or any special request..." required></textarea>
+                        <span class="error-msg" id="err-desc">⚠ Please add a description or special request.</span>
+                    </div>
+
+                    <div class="field" id="field-phone">
+                        <label for="phone">Contact Number</label>
+                        <input id="phone" type="tel" placeholder="Enter 10-digit mobile number" required maxlength="10">
+                        <span class="error-msg" id="err-phone">⚠ Please enter a valid 10-digit mobile number.</span>
+                    </div>
+
+                    <div class="field">
+                        <label for="designUpload">Attach Cake Design</label>
+                        <input id="designUpload" type="file" accept="image/*">
+                        <span class="upload-note">Upload a cake design image or reference photo from your device.</span>
+                    </div>
+
+                    <div class="field" id="field-date">
+                        <label for="dateNeeded">Date Needed</label>
+                        <input id="dateNeeded" type="date" required>
+                        <span class="error-msg" id="err-date">⚠ Please select a valid future date.</span>
+                    </div>
+
+                    <button type="submit" class="order-btn">Place Order</button>
+                    <div id="statusBox" class="status-box"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const params       = new URLSearchParams(window.location.search);
+        const selectedCake = params.get('cake') || '';
+        const cakeChosen   = document.getElementById('cakeChosen');
+        const form         = document.getElementById('cakeOrderForm');
+        const statusBox    = document.getElementById('statusBox');
+
+        cakeChosen.value = selectedCake;
+
+        // ── Helpers ──────────────────────────────────────────────────────────────
+        function setValid(fieldId) {
+            const el = document.getElementById(fieldId);
+            if (el) { el.classList.remove('invalid'); el.classList.add('valid'); }
+        }
+        function setInvalid(fieldId) {
+            const el = document.getElementById(fieldId);
+            if (el) { el.classList.remove('valid'); el.classList.add('invalid'); }
+        }
+        function clearState(fieldId) {
+            const el = document.getElementById(fieldId);
+            if (el) { el.classList.remove('valid', 'invalid'); }
+        }
+
+        // ── Live validation on input ─────────────────────────────────────────────
+        document.getElementById('customerName').addEventListener('input', function () {
+            const val = this.value.trim();
+            /^[a-zA-Z\s]{2,}$/.test(val) ? setValid('field-name') : setInvalid('field-name');
+        });
+
+        document.getElementById('quantity').addEventListener('change', function () {
+            this.value ? setValid('field-qty') : setInvalid('field-qty');
+        });
+
+        document.getElementById('description').addEventListener('input', function () {
+            this.value.trim().length >= 5 ? setValid('field-desc') : setInvalid('field-desc');
+        });
+
+        document.getElementById('phone').addEventListener('input', function () {
+            // Allow digits only while typing
+            this.value = this.value.replace(/\D/g, '').slice(0, 10);
+            /^[6-9]\d{9}$/.test(this.value) ? setValid('field-phone') : setInvalid('field-phone');
+        });
+
+        document.getElementById('dateNeeded').addEventListener('change', function () {
+            const today = new Date(); today.setHours(0,0,0,0);
+            const chosen = new Date(this.value);
+            chosen >= today ? setValid('field-date') : setInvalid('field-date');
+        });
+
+        // ── Submit validation ────────────────────────────────────────────────────
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const name  = document.getElementById('customerName').value.trim();
+            const cake  = cakeChosen.value || 'your selected cake';
+            const qty   = document.getElementById('quantity').value;
+            const desc  = document.getElementById('description').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const date  = document.getElementById('dateNeeded').value;
+            const today = new Date(); today.setHours(0,0,0,0);
+
+            let valid = true;
+
+            // Name — letters & spaces, min 2 chars
+            if (/^[a-zA-Z\s]{2,}$/.test(name)) { setValid('field-name'); }
+            else { setInvalid('field-name'); valid = false; }
+
+            // Quantity
+            if (qty) { setValid('field-qty'); }
+            else { setInvalid('field-qty'); valid = false; }
+
+            // Description — min 5 chars
+            if (desc.length >= 5) { setValid('field-desc'); }
+            else { setInvalid('field-desc'); valid = false; }
+
+            // Phone — Indian 10-digit mobile (starts with 6-9)
+            if (/^[6-9]\d{9}$/.test(phone)) { setValid('field-phone'); }
+            else { setInvalid('field-phone'); valid = false; }
+
+            // Date — must be today or future
+            if (date && new Date(date) >= today) { setValid('field-date'); }
+            else { setInvalid('field-date'); valid = false; }
+
+            if (!valid) {
+                statusBox.style.display    = 'block';
+                statusBox.textContent      = '⚠ Please fix the errors above before placing your order.';
+                statusBox.style.background = '#fff8f0';
+                statusBox.style.color      = '#a84300';
+                statusBox.style.border     = '1px solid #f5d5b0';
+                // Scroll to first error
+                document.querySelector('.field.invalid')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            }
+
+            statusBox.style.display    = 'block';
+            statusBox.textContent      = `✅ Order placed successfully! Thank you, ${name}. Your order for ${cake} (${qty}) is confirmed for ${date}. We will contact you at ${phone} soon.`;
+            statusBox.style.background = '#f8fff2';
+            statusBox.style.color      = '#2e6a1f';
+            statusBox.style.border     = '1px solid #d5edc2';
+
+            form.reset();
+            // Clear validation states after reset
+            ['field-name','field-qty','field-desc','field-phone','field-date'].forEach(clearState);
+            cakeChosen.value = cake;
+        });
+    </script>
+</body>
+</html>

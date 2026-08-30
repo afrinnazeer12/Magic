@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Story | Magic Delightz</title>
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #fdf6ee;
+            color: #1a1a1a;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before,
+        body::after {
+            content: "";
+            position: fixed;
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.18;
+            z-index: -1;
+            pointer-events: none;
+            animation: ambientFloat 14s ease-in-out infinite;
+        }
+
+        body::before {
+            top: 60px;
+            left: -80px;
+            background: #ffd38d;
+        }
+
+        body::after {
+            right: -110px;
+            bottom: 80px;
+            background: #ffc6d6;
+            animation-delay: -6s;
+        }
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 6%;
+            background: rgba(253, 246, 238, 0.95);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+            animation: slideDown 0.7s ease;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+
+        .brand img {
+            width: 54px;
+            height: 54px;
+            object-fit: cover;
+            border-radius: 50%;
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+        }
+
+        .brand:hover img {
+            transform: rotate(-4deg) scale(1.05);
+            box-shadow: 0 10px 20px rgba(255,159,13,0.18);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #ff9f0d;
+            font-weight: 600;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .back-link:hover {
+            transform: translateX(-4px);
+            color: #d98800;
+        }
+
+        .hero {
+            padding: 72px 6% 40px;
+            text-align: center;
+            animation: fadeUp 0.9s ease;
+            position: relative;
+        }
+
+        .eyebrow {
+            color: #ff9f0d;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 0.86rem;
+            font-weight: 600;
+            margin-bottom: 14px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.2rem, 5vw, 4rem);
+            line-height: 1.15;
+            margin-bottom: 18px;
+            background: linear-gradient(120deg, #1a1a1a 0%, #3d2b1f 45%, #ff9f0d 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            max-width: 760px;
+            margin: 0 auto;
+            color: #666;
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .story-wrap {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 30px 6% 80px;
+            display: grid;
+            grid-template-columns: 1.05fr 1fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .story-visual,
+        .story-card,
+        .highlight-strip,
+        .placeholder-note {
+            animation: fadeUp 0.9s ease;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(34px);
+            transition: opacity 0.75s ease, transform 0.75s ease;
+        }
+
+        .story-visual {
+            display: flex;
+            justify-content: center;
+        }
+
+        .story-visual img {
+            width: min(100%, 420px);
+            border-radius: 28px;
+            box-shadow: 0 18px 48px rgba(0,0,0,0.10);
+            animation: heroFloat 4.2s ease-in-out infinite;
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+        }
+
+        .story-visual img:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 24px 56px rgba(255,159,13,0.16);
+        }
+
+        .story-card {
+            background: #fff;
+            border: 1px solid #f0e8da;
+            border-radius: 24px;
+            padding: 36px;
+            box-shadow: 0 14px 30px rgba(0,0,0,0.05);
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+        }
+
+        .story-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 36px rgba(255,159,13,0.12);
+        }
+
+        .story-card h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 18px;
+        }
+
+        .story-card p {
+            color: #555;
+            line-height: 1.9;
+            margin-bottom: 18px;
+        }
+
+        .story-card strong {
+            color: #c0392b;
+        }
+
+        .highlight-strip {
+            max-width: 1180px;
+            margin: 0 auto 28px;
+            padding: 0 6%;
+        }
+
+        .highlight-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        .highlight-box {
+            background: #fff8f0;
+            border: 1px solid #f3e6d4;
+            border-radius: 20px;
+            padding: 24px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .highlight-box::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg, transparent, rgba(255,255,255,0.55), transparent);
+            transform: translateX(-120%);
+            transition: transform 0.8s ease;
+        }
+
+        .highlight-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 28px rgba(255,159,13,0.12);
+        }
+
+        .highlight-box:hover::before {
+            transform: translateX(120%);
+        }
+
+        .highlight-box i {
+            font-size: 30px;
+            color: #ff9f0d;
+            margin-bottom: 12px;
+            display: inline-block;
+        }
+
+        .highlight-box h3 {
+            margin-bottom: 10px;
+            font-size: 1.05rem;
+        }
+
+        .highlight-box p {
+            color: #666;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        .placeholder-note {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 6% 90px;
+        }
+
+        .placeholder-note .note-card {
+            border-left: 4px solid #ff9f0d;
+            background: #fff;
+            padding: 24px 26px;
+            border-radius: 18px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.04);
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+        }
+
+        .placeholder-note .note-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 32px rgba(255,159,13,0.10);
+        }
+
+        .placeholder-note h3 {
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 10px;
+        }
+
+        .placeholder-note p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes heroFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes ambientFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(20px, -24px) scale(1.08); }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .story-wrap,
+            .highlight-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .story-card {
+                padding: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="topbar">
+        <a href="index.html#about" class="brand">
+            <img src="IMG_1261.PNG" alt="Magic Delightz logo">
+        </a>
+        <a href="index.html#about" class="back-link">
+            <i class='bx bx-arrow-back'></i>
+            <span>Back to Home</span>
+        </a>
+    </div>
+
+    <section class="hero">
+        <p class="eyebrow">Our Story</p>
+        <h1>A Sweet Journey Built on Passion and Care</h1>
+        <p>Magic Delightz began in 2021 with a simple homemade dream and slowly grew into a cake shop loved by more and more people for its taste, care, and quality.</p>
+    </section>
+
+    <section class="story-wrap">
+        <div class="story-visual reveal">
+            <img src="Magic Logo.jpg" alt="Magic Delightz story image">
+        </div>
+
+        <div class="story-card reveal">
+            <h2>The Heart Behind Magic Delightz</h2>
+            <p><strong>Magic Delightz</strong> started in 2021 with only a few clients, but with dedication, consistency, and homemade quality, it gradually reached many hearts and many celebrations.</p>
+            <p>Founded by <strong>Nisha Nazeer</strong>, our CEO, Magic Delightz was created with a true passion for baking and a strong commitment to making every cake special, fresh, and memorable.</p>
+            <p>Our Co-Founder, <strong>Abdul Nazeer</strong>, has also been an important part of this journey, helping grow the brand with care, support, and vision.</p>
+            <p>We proudly prepare our cakes with pure ingredients, homemade care, and honest quality. We also make sure our pricing remains fair, so our customers receive beautiful, delicious cakes at great value.</p>
+        </div>
+    </section>
+
+    <section class="highlight-strip reveal">
+        <div class="highlight-grid">
+            <div class="highlight-box reveal">
+                <i class='bx bx-time-five'></i>
+                <h3>Since 2021</h3>
+                <p>What began with a small number of clients has grown into a trusted homemade cake journey.</p>
+            </div>
+            <div class="highlight-box reveal">
+                <i class='bx bx-leaf'></i>
+                <h3>Pure Ingredients</h3>
+                <p>We use pure ingredients and thoughtful baking practices to deliver freshness and quality in every cake.</p>
+            </div>
+            <div class="highlight-box reveal">
+                <i class='bx bx-heart'></i>
+                <h3>Founder-Led Passion</h3>
+                <p>Led by Nisha Nazeer and supported by Abdul Nazeer, every cake is made with genuine care and dedication.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="placeholder-note reveal">
+        <div class="note-card">
+            <h3>Our Promise</h3>
+            <p>At Magic Delightz, we believe a cake should do more than look beautiful — it should taste fresh, feel special, and bring happiness to every moment it becomes part of.</p>
+        </div>
+    </section>
+
+    <script>
+        const revealItems = document.querySelectorAll('.reveal');
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.18 });
+
+        revealItems.forEach((item, index) => {
+            item.style.transitionDelay = `${index * 0.08}s`;
+            revealObserver.observe(item);
+        });
+    </script>
+</body>
+</html>
